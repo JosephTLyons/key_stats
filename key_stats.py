@@ -47,7 +47,7 @@ def get_items_for_printing(sorted_occurence_keys_tuple_list): # Fix name
     return total_keys_entered, longest_occurence_len, longest_keys_name_len
 
 
-def print_histogram_and_details(sorted_occurence_keys_tuple_list, number_of_characters_for_full_histogram_line):
+def print_histogram_and_details(sorted_occurence_keys_tuple_list, number_of_characters_for_full_histogram_bar):
     total_keys_entered, longest_occurence_len, longest_keys_name_len = get_items_for_printing(sorted_occurence_keys_tuple_list)
     repetitions_of_most_used_key = sorted_occurence_keys_tuple_list[0][0]
 
@@ -55,7 +55,7 @@ def print_histogram_and_details(sorted_occurence_keys_tuple_list, number_of_char
 
     for occurence, keys in sorted_occurence_keys_tuple_list:
         percentage_of_histogram_bar_to_print = occurence / repetitions_of_most_used_key
-        histrogram_bar = "*" * int(percentage_of_histogram_bar_to_print * number_of_characters_for_full_histogram_line)
+        histrogram_bar = "*" * int(percentage_of_histogram_bar_to_print * number_of_characters_for_full_histogram_bar)
         keys_name = " ".join(keys)
         padded_keys_string = str(keys_name).rjust(longest_keys_name_len, " ")
         padded_occurence_string = str(occurence).rjust(longest_occurence_len, " ")
