@@ -71,9 +71,9 @@ def main():
     print()
     input_string = input("Text: ")
     occurence_to_keys_dict = get_occurence_to_keys_dict(input_string)
-    sorted_occurence_keys_tuple_list = sorted(occurence_to_keys_dict.items(), key=lambda x: x[0], reverse=True)
 
-    if sorted_occurence_keys_tuple_list:
+    if occurence_to_keys_dict:
+        sorted_occurence_keys_tuple_list = sorted(occurence_to_keys_dict.items(), key=lambda x: x[0], reverse=True)
         print_histogram_and_details(sorted_occurence_keys_tuple_list, 100)
 
 
