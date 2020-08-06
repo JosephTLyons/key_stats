@@ -1,58 +1,81 @@
 #!/usr/bin/env python3
 
-key_usage_dict = {}
 
-for character in input():
-    if character != "\n":
-        if character == " ":
-            character = "\" \""
+def get_occurence_to_keys_dict(input_string):
+    key_to_occurence_dict = {}
 
-        if character in key_usage_dict:
-            key_usage_dict[character] += 1
+    for key in input_string:
+        if key == " ":
+            key = "SPACE"
+
+        if key in key_to_occurence_dict:
+            key_to_occurence_dict[key] += 1
         else:
-            key_usage_dict[character] = 1
+            key_to_occurence_dict[key] = 1
 
-sorted_key_usage_dict = sorted(key_usage_dict.items(), key=lambda x: x[1], reverse=True)
+    occurence_to_keys_dict = {}
 
-print()
+    for key, occurence in key_to_occurence_dict.items():
+        if occurence in occurence_to_keys_dict:
+            occurence_to_keys_dict[occurence].append(key)
+        else:
+            occurence_to_keys_dict[occurence] = [key]
 
-total_keys_entered = 0
-longest_key_name_len = 0
-longest_occurence_len = 0
-
-for x in sorted_key_usage_dict:
-    total_keys_entered += x[1]
-
-    length_of_key_name = len(x[0])
-
-    if length_of_key_name > longest_key_name_len:
-        longest_key_name_len = length_of_key_name
-
-    length_of_occurence = len(str(x[1]))
-
-    if length_of_occurence > longest_occurence_len:
-        longest_occurence_len = length_of_occurence
-
-repetitions_of_most_used_key = sorted_key_usage_dict[0][1]
-i = 100;
-
-for x in sorted_key_usage_dict:
-    histrogram_text = "*" * int((x[1] / repetitions_of_most_used_key) * i)
-    padded_letter = str(x[0]).rjust(longest_key_name_len, " ")
-    padded_occurence = str(x[1]).rjust(longest_occurence_len, " ")
-
-    print(padded_letter, "|", padded_occurence, "|", histrogram_text)
+    return occurence_to_keys_dict
 
 
-print()
-print("Total Keys Entered:", total_keys_entered)
+def get_items_for_printing(sorted_occurence_keys_tuple_list): # Fix name
+    total_keys_entered = 0
+    longest_occurence_len = 0
+    longest_keys_name_len = 0
+
+    for occurence, keys in sorted_occurence_keys_tuple_list:
+        total_keys_entered += occurence * len(keys)
+        length_of_occurence = len(str(occurence))
+
+        if length_of_occurence > longest_occurence_len:
+            longest_occurence_len = length_of_occurence
+
+        # Store this somewhere so it doesn't have to be computed again
+        keys_name = " ".join(keys)
+
+        length_of_keys_name = len(keys_name)
+
+        if length_of_keys_name > longest_keys_name_len:
+            longest_keys_name_len = length_of_keys_name
+
+    return total_keys_entered, longest_occurence_len, longest_keys_name_len
 
 
-# Fix variable names
-# Function-ize
-# Group characters with same characteristics in one line? (try on separate branch)
-    # New dict that maps occurence to alphetized list of characters
-    # Key is alphabetized list: [" ", e, r, etc.]
-    # Alphabetize groups
-    # If this feature isn't done, we should still
-# Post on GH
+def print_histogram_and_details(sorted_occurence_keys_tuple_list, number_of_characters_for_full_histogram_line):
+    total_keys_entered, longest_occurence_len, longest_keys_name_len = get_items_for_printing(sorted_occurence_keys_tuple_list)
+    repetitions_of_most_used_key = sorted_occurence_keys_tuple_list[0][0]
+
+    print()
+
+    for occurence, keys in sorted_occurence_keys_tuple_list:
+        percentage_of_histogram_bar_to_print = occurence / repetitions_of_most_used_key
+        histrogram_bar = "*" * int(percentage_of_histogram_bar_to_print * number_of_characters_for_full_histogram_line)
+        keys_name = " ".join(keys)
+        padded_keys_string = str(keys_name).rjust(longest_keys_name_len, " ")
+        padded_occurence_string = str(occurence).rjust(longest_occurence_len, " ")
+
+        print(f"{padded_keys_string} | {padded_occurence_string} | {histrogram_bar}")
+
+    print()
+    print("Total Keys Entered:", total_keys_entered)
+    print()
+
+
+def main():
+    print()
+    input_string = input("Text: ")
+    occurence_to_keys_dict = get_occurence_to_keys_dict(input_string)
+    sorted_occurence_keys_tuple_list = sorted(occurence_to_keys_dict.items(), key=lambda x: x[0], reverse=True)
+
+    if sorted_occurence_keys_tuple_list:
+        print_histogram_and_details(sorted_occurence_keys_tuple_list, 100)
+
+
+if __name__ == "__main__":
+    main()
