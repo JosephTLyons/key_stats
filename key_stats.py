@@ -69,6 +69,7 @@ def print_histogram_and_details(sorted_occurence_keys_tuple_list, number_of_char
 
 def main():
     print()
+
     input_string = input("Text: ")
     occurence_to_keys_dict = get_occurence_to_keys_dict(input_string)
 
