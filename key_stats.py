@@ -11,7 +11,11 @@ def get_character_to_occurrence_dict(input_string, should_include_whitespace):
     }
 
     for character in input_string:
-        character = whitespace_character_substitutes.get(character, character)
+        if character in whitespace_character_substitutes:
+            if not should_include_whitespace:
+                continue
+
+            character = whitespace_character_substitutes[character]
 
         if character in character_to_occurrence_dict:
             character_to_occurrence_dict[character] += 1
