@@ -73,17 +73,36 @@ def print_histogram_and_details(sorted_occurrence_key_list_tuple_list, number_of
     print()
 
 
+def get_input_string():
+    print("1) Input from keyboard")
+    print("2) Input from file")
+    print()
+
+    try:
+        choice = int(input("Choice: "))
+    except Exception:
+        choice = 0
+
+    print()
+
+    if choice == 1:
+        return input("Text: ")
+    elif choice == 2:
+        file_path = input("File path: ")
+
+        with open(file_path, "r") as file:
+            return file.read()
+
+
 def main():
     print()
 
-    with open("/Users/josephlyons/Programming/Writing/Academic Papers/Papers/More Than Metal - A Brotherhood of Acceptance.txt", "r") as file:
-        input_string = file.read()
+    input_string = get_input_string()
+    occurrence_to_key_list_dict = get_occurrence_to_key_list_dict(input_string, True)
 
-        occurrence_to_key_list_dict = get_occurrence_to_key_list_dict(input_string, True)
-
-        if occurrence_to_key_list_dict:
-            sorted_occurrence_key_list_tuple_list = sorted(occurrence_to_key_list_dict.items(), key=lambda x: x[0], reverse=True)
-            print_histogram_and_details(sorted_occurrence_key_list_tuple_list, 100)
+    if occurrence_to_key_list_dict:
+        sorted_occurrence_key_list_tuple_list = sorted(occurrence_to_key_list_dict.items(), key=lambda x: x[0], reverse=True)
+        print_histogram_and_details(sorted_occurrence_key_list_tuple_list, 100)
 
 
 if __name__ == "__main__":
