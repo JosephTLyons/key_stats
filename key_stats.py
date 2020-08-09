@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 
-def get_occurence_to_key_list_dict(input_string, should_include_spaces=True):
+def get_occurence_to_key_list_dict(input_string, should_include_spaces):
     key_to_occurence_dict = {}
 
     for key in input_string:
@@ -74,7 +74,7 @@ def main():
     print()
 
     input_string = input("Text: ")
-    occurence_to_key_list_dict = get_occurence_to_key_list_dict(input_string)
+    occurence_to_key_list_dict = get_occurence_to_key_list_dict(input_string, True)
 
     if occurence_to_key_list_dict:
         sorted_occurence_key_list_tuple_list = sorted(occurence_to_key_list_dict.items(), key=lambda x: x[0], reverse=True)
