@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
 
+from pathlib import Path
+
+
 def get_key_to_occurrence_dict(input_string, should_include_whitespace):
     key_to_occurrence_dict = {}
     whitespace_characters = [" ", "\n"]
@@ -94,7 +97,7 @@ def get_input_string():
     if choice == 1:
         return input("Text: ")
     elif choice == 2:
-        file_path = input("File path: ")
+        file_path = Path(input("File path (don't use quotes): "))
 
         with open(file_path, "r") as file:
             return file.read()
