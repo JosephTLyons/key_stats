@@ -2,9 +2,10 @@
 
 def get_key_to_occurrence_dict(input_string, should_include_whitespace):
     key_to_occurrence_dict = {}
+    whitespace_characters = [" ", "\n"]
 
     for key in input_string:
-        if key in [" ", "\n"]:
+        if key in whitespace_characters:
             if not should_include_whitespace:
                 continue
 
