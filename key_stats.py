@@ -27,7 +27,7 @@ def get_occurence_to_key_list_dict(input_string, should_include_spaces=True):
     return occurence_to_key_list_dict
 
 
-def get_items_for_printing(sorted_occurence_key_list_tuple_list): # Fix name
+def get_printing_items(sorted_occurence_key_list_tuple_list):
     total_keys_entered = 0
     longest_occurence_len = 0
     longest_keys_name_len = 0
@@ -51,7 +51,7 @@ def get_items_for_printing(sorted_occurence_key_list_tuple_list): # Fix name
 
 
 def print_histogram_and_details(sorted_occurence_key_list_tuple_list, number_of_characters_for_full_histogram_bar):
-    total_keys_entered, longest_occurence_len, longest_keys_name_len = get_items_for_printing(sorted_occurence_key_list_tuple_list)
+    total_keys_entered, longest_occurence_len, longest_keys_name_len = get_printing_items(sorted_occurence_key_list_tuple_list)
     repetitions_of_most_used_key = sorted_occurence_key_list_tuple_list[0][0]
 
     print()
