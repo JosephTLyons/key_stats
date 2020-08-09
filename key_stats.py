@@ -1,11 +1,14 @@
 #!/usr/bin/env python3
 
 
-def get_occurence_to_key_list_dict(input_string):
+def get_occurence_to_key_list_dict(input_string, should_include_spaces=True):
     key_to_occurence_dict = {}
 
     for key in input_string:
         if key == " ":
+            if not should_include_spaces:
+                continue
+
             key = "SPACE"
 
         if key in key_to_occurence_dict:
