@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 
-
-def get_occurrence_to_key_list_dict(input_string, should_include_whitespace):
+def get_key_to_occurrence_dict(input_string, should_include_whitespace):
     key_to_occurrence_dict = {}
 
     for key in input_string:
@@ -18,6 +17,12 @@ def get_occurrence_to_key_list_dict(input_string, should_include_whitespace):
             key_to_occurrence_dict[key] += 1
         else:
             key_to_occurrence_dict[key] = 1
+
+    return key_to_occurrence_dict
+
+
+def get_occurrence_to_key_list_dict(input_string, should_include_whitespace):
+    key_to_occurrence_dict = get_key_to_occurrence_dict(input_string, should_include_whitespace)
 
     occurrence_to_key_list_dict = {}
 
