@@ -61,12 +61,12 @@ def print_histogram_and_details(sorted_occurrence_key_list_tuple_list, number_of
 
     for occurrence, key_list in sorted_occurrence_key_list_tuple_list:
         percentage_of_histogram_bar_to_print = occurrence / repetitions_of_most_used_key
-        histrogram_bar = "*" * int(percentage_of_histogram_bar_to_print * number_of_characters_for_full_histogram_bar)
+        histogram_bar = "*" * int(percentage_of_histogram_bar_to_print * number_of_characters_for_full_histogram_bar)
         keys_name = " ".join(key_list)
         padded_keys_string = str(keys_name).rjust(longest_keys_name_len, " ")
         padded_occurrence_string = str(occurrence).rjust(longest_occurrence_len, " ")
 
-        print(f"{padded_keys_string} | {padded_occurrence_string} | {histrogram_bar}")
+        print(f"{padded_keys_string} | {padded_occurrence_string} | {histogram_bar}")
 
     print()
     print("Total keys Entered:", total_keys_entered)
