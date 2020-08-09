@@ -66,7 +66,7 @@ def print_histogram_and_details(sorted_occurence_key_list_tuple_list, number_of_
         print(f"{padded_keys_string} | {padded_occurence_string} | {histrogram_bar}")
 
     print()
-    print("Total key_list Entered:", total_keys_entered)
+    print("Total keys Entered:", total_keys_entered)
     print()
 
 
