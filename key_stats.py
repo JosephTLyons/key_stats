@@ -71,7 +71,12 @@ def print_histogram_and_details(sorted_occurrence_character_list_tuple_list, num
         percentage_of_histogram_bar_to_print = occurrence / repetitions_of_most_used_character
         histogram_bar = "*" * int(percentage_of_histogram_bar_to_print * number_of_characters_for_full_histogram_bar)
 
-        print(f"{padded_character_list_string} | {padded_occurrence_string} | {histogram_bar}")
+        output = f"{padded_character_list_string} | {padded_occurrence_string} |"
+
+        if len(histogram_bar) != 0:
+            output += f" {histogram_bar}"
+
+        print(output)
 
     print()
     print("Total Characters Entered:", total_characters_entered)
