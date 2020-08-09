@@ -64,5 +64,5 @@ L F ; 6 í |    8 |
     E 3 8 |    3 |
       ? Y |    2 |
 
-Total keys Entered: 21518
+Total Characters Entered: 21518
 ```
