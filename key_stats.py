@@ -4,11 +4,11 @@ from pathlib import Path
 
 
 def get_character_to_occurrence_dict(input_string, should_include_whitespace):
-    character_to_occurrence_dict = {}
     whitespace_character_substitutes = {
         " ": "SPACE",
         "\n": "\\n"
     }
+    character_to_occurrence_dict = {}
 
     for character in input_string:
         if character in whitespace_character_substitutes:
@@ -27,7 +27,6 @@ def get_character_to_occurrence_dict(input_string, should_include_whitespace):
 
 def get_occurrence_to_character_list_dict(input_string, should_include_whitespace):
     character_to_occurrence_dict = get_character_to_occurrence_dict(input_string, should_include_whitespace)
-
     occurrence_to_character_list_dict = {}
 
     for character, occurrence in character_to_occurrence_dict.items():
