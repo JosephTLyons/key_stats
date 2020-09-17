@@ -79,7 +79,7 @@ def print_histogram_and_details(sorted_occurrence_character_list_tuple_list, num
         print(output)
 
     print()
-    print("Total Characters Entered:", total_characters_entered)
+    print(f"Total Characters Entered: {total_characters_entered}")
     print()
 
 
