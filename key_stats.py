@@ -93,24 +93,25 @@ def print_histogram_and_details(
 
 
 def get_input_string():
-    print("1) Input from keyboard")
-    print("2) Input from file")
-    print()
+    while True:
+        print("1) Input from keyboard")
+        print("2) Input from file")
+        print()
 
-    try:
-        choice = int(input("Choice: "))
-    except Exception:
-        choice = 0
+        try:
+            choice = int(input("Choice: "))
+        except Exception:
+            choice = 0
 
-    print()
+        print()
 
-    if choice == 1:
-        return input("Text: ")
-    elif choice == 2:
-        file_path = Path(input("File path (don't use quotes): "))
+        if choice == 1:
+            return input("Text: ")
+        elif choice == 2:
+            file_path = Path(input("File path (don't use quotes): "))
 
-        with open(file_path, "r") as file:
-            return file.read()
+            with open(file_path, "r") as file:
+                return file.read()
 
 
 def main():
