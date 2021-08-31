@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
-
+from collections import defaultdict, Counter
 from pathlib import Path
 
 
 def get_character_to_occurrence_dict(input_string, should_include_whitespace):
     whitespace_character_substitutes = {" ": "SPACE", "\n": "\\n"}
-    character_to_occurrence_dict = {}
+    character_to_occurrence_dict = Counter()
 
     for character in input_string:
         if character in whitespace_character_substitutes:
@@ -14,10 +14,7 @@ def get_character_to_occurrence_dict(input_string, should_include_whitespace):
 
             character = whitespace_character_substitutes[character]
 
-        if character in character_to_occurrence_dict:
-            character_to_occurrence_dict[character] += 1
-        else:
-            character_to_occurrence_dict[character] = 1
+        character_to_occurrence_dict[character] += 1
 
     return character_to_occurrence_dict
 
@@ -26,13 +23,10 @@ def get_occurrence_to_character_list_dict(input_string, should_include_whitespac
     character_to_occurrence_dict = get_character_to_occurrence_dict(
         input_string, should_include_whitespace
     )
-    occurrence_to_character_list_dict = {}
+    occurrence_to_character_list_dict = defaultdict(list)
 
     for character, occurrence in character_to_occurrence_dict.items():
-        if occurrence in occurrence_to_character_list_dict:
-            occurrence_to_character_list_dict[occurrence].append(character)
-        else:
-            occurrence_to_character_list_dict[occurrence] = [character]
+        occurrence_to_character_list_dict[occurrence].append(character)
 
     return occurrence_to_character_list_dict
 
